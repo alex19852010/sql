@@ -18,6 +18,9 @@ public:
     ~login();
 
     QMessageBox *mes;
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::login *ui;
     QSqlDatabase db;
