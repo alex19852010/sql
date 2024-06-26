@@ -28,6 +28,10 @@ void login::on_pushButton_clicked()
     if(db.open())
     {
        mes->setText("соеденение прошло успешно");
+       this->hide();
+       dates = new datainfo();
+       dates->show();
+
     }
 
     else

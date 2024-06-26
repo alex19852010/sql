@@ -21,4 +21,5 @@ void MainWindow::on_pushButton_clicked()
     logwin->show();
     ui->label->hide();
     ui->pushButton->hide();
+    this->hide();
 }

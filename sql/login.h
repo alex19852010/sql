@@ -1,9 +1,13 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
+#include <datainfo.h>
+#include <ui_datainfo.h>
+
 #include <QWidget>
 #include <QtSql>
 #include <QMessageBox>
+
 
 namespace Ui {
 class login;
@@ -16,6 +20,8 @@ class login : public QWidget
 public:
     explicit login(QWidget *parent = nullptr);
     ~login();
+
+datainfo *dates;
 
     QMessageBox *mes;
 private slots:
