@@ -4,6 +4,7 @@
 #include <QWidget>
 
 //#include <QSqlTableModel>
+#include <QComboBox>
 #include <QSqlQueryModel>
 
 namespace Ui {
@@ -24,6 +25,7 @@ private slots:
 private:
     Ui::datainfo *ui;
     QSqlQueryModel *model;
+    QComboBox *cbo;
 };
 
 #endif // DATAINFO_H

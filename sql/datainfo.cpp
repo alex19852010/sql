@@ -1,5 +1,6 @@
 #include "datainfo.h"
 #include "ui_datainfo.h"
+#include <QDebug>
 
 
 datainfo::datainfo(QWidget *parent) :
@@ -7,6 +8,9 @@ datainfo::datainfo(QWidget *parent) :
     ui(new Ui::datainfo)
 {
     ui->setupUi(this);
+    QStringList lst;
+    lst << "ЗСК" << "ТЦ" << "УС";
+    ui->comboBox->addItems(lst);
 }
 
 datainfo::~datainfo()
@@ -23,6 +27,8 @@ void datainfo::on_pushButton_clicked()
 //    ui->tableView->setModel(model);
 //    ui->tableView->resizeColumnsToContents();
 //    ui->tableView->show();
+
+
 
     model = new QSqlQueryModel();
     model->setQuery("SELECT * FROM ЗСК");

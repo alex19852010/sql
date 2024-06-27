@@ -10,14 +10,18 @@
     <height>372</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="2">
-    <widget class="QTableView" name="tableView"/>
-   </item>
-   <item row="0" column="1">
+   <item row="2" column="1">
     <widget class="QPushButton" name="pushButton">
      <property name="font">
       <font>
@@ -28,6 +32,22 @@
      </property>
      <property name="text">
       <string>Вывести данные</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Данные по объектам</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
