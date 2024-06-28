@@ -30,12 +30,23 @@ void datainfo::on_pushButton_clicked()
 
 
 
-    model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM ЗСК");
+//    model = new QSqlQueryModel();
+//    model->setQuery("SELECT * FROM ЗСК");
 
-        ui->tableView->setModel(model);
-        ui->tableView->resizeColumnsToContents();
-        ui->tableView->show();
+//        ui->tableView->setModel(model);
+//        ui->tableView->resizeColumnsToContents();
+//        ui->tableView->show();
+
+    QString tableName = ui->comboBox->currentText();
+    QString query = QString("SELECT * FROM %1").arg(tableName);
+    qDebug() << "Executing query:" << query;
+
+    model = new QSqlQueryModel();
+    model->setQuery(query);
+
+    ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->show();
 
 
 }
