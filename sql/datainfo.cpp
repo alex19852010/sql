@@ -50,3 +50,9 @@ void datainfo::on_pushButton_clicked()
 
 
 }
+
+void datainfo::on_pushButton_2_clicked()
+{
+    enter = new enter_data();
+    enter->show();
+}

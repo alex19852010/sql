@@ -17,17 +17,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     datainfo.cpp \
+    enter_data.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     datainfo.h \
+    enter_data.h \
     login.h \
     mainwindow.h
 
 FORMS += \
     datainfo.ui \
+    enter_data.ui \
     login.ui \
     mainwindow.ui
 
