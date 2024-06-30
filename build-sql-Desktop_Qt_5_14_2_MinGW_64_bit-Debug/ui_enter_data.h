@@ -11,6 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -27,11 +29,13 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_4;
     QLabel *label_2;
+    QLabel *label_4;
     QPushButton *pushButton;
     QLabel *label;
     QLineEdit *lineEdit_2;
     QLineEdit *lineEdit_3;
-    QLabel *label_4;
+    QComboBox *comboBox;
+    QDateEdit *dateEdit;
 
     void setupUi(QWidget *enter_data)
     {
@@ -70,6 +74,13 @@ public:
 
         gridLayout->addWidget(label_2, 2, 0, 1, 1);
 
+        label_4 = new QLabel(enter_data);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setFont(font);
+        label_4->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_4, 6, 0, 1, 1);
+
         pushButton = new QPushButton(enter_data);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setFont(font);
@@ -95,12 +106,15 @@ public:
 
         gridLayout->addWidget(lineEdit_3, 5, 0, 1, 1);
 
-        label_4 = new QLabel(enter_data);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setFont(font);
-        label_4->setAlignment(Qt::AlignCenter);
+        comboBox = new QComboBox(enter_data);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
-        gridLayout->addWidget(label_4, 6, 0, 1, 1);
+        gridLayout->addWidget(comboBox, 3, 1, 1, 1);
+
+        dateEdit = new QDateEdit(enter_data);
+        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+
+        gridLayout->addWidget(dateEdit, 7, 1, 1, 1);
 
 
         retranslateUi(enter_data);
@@ -113,9 +127,9 @@ public:
         enter_data->setWindowTitle(QCoreApplication::translate("enter_data", "Form", nullptr));
         label_3->setText(QCoreApplication::translate("enter_data", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265", nullptr));
         label_2->setText(QCoreApplication::translate("enter_data", "\320\236\320\261\321\212\320\265\320\272\321\202", nullptr));
+        label_4->setText(QCoreApplication::translate("enter_data", "\320\264\320\260\321\202\320\260 \320\277\321\200\320\276\320\262\320\265\321\200\320\272\320\270", nullptr));
         pushButton->setText(QCoreApplication::translate("enter_data", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
         label->setText(QCoreApplication::translate("enter_data", "\320\235\320\276\320\274\320\265\321\200", nullptr));
-        label_4->setText(QCoreApplication::translate("enter_data", "\320\264\320\260\321\202\320\260 \320\277\321\200\320\276\320\262\320\265\321\200\320\272\320\270", nullptr));
     } // retranslateUi
 
 };

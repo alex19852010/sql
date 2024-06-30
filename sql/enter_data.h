@@ -4,6 +4,10 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QSqlQueryModel>
+#include <QSqlQuery>
+#include <QMessageBox>
+#include <QtSql>
+
 
 namespace Ui {
 class enter_data;
@@ -17,9 +21,11 @@ public:
     explicit enter_data(QWidget *parent = nullptr);
     ~enter_data();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::enter_data *ui;
-    QSqlQueryModel *model2;
     QComboBox *cbo2;
 };
 
