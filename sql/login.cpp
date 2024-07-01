@@ -11,6 +11,7 @@ login::login(QWidget *parent) :
     ui->lineEdit->setText("WIN-5TJS7JUL0GS\\SQLEXPRESS");
     ui->lineEdit_2->setText("equipment");
     ui->lineEdit_3->setText("FANAT");
+
 }
 
 login::~login()

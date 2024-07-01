@@ -36,6 +36,7 @@ public:
     QLineEdit *lineEdit_3;
     QComboBox *comboBox;
     QDateEdit *dateEdit;
+    QComboBox *comboBox_2;
 
     void setupUi(QWidget *enter_data)
     {
@@ -115,6 +116,11 @@ public:
         dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
 
         gridLayout->addWidget(dateEdit, 7, 1, 1, 1);
+
+        comboBox_2 = new QComboBox(enter_data);
+        comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
+
+        gridLayout->addWidget(comboBox_2, 5, 1, 1, 1);
 
 
         retranslateUi(enter_data);
