@@ -15,6 +15,8 @@ enter_data::enter_data(QWidget *parent) :
     ui->comboBox_2->addItems(lst3);
     ui->lineEdit_2->setText(ui->comboBox->currentText());
     ui->lineEdit_3->setText(ui->comboBox_2->currentText());
+    connect(ui->dateEdit, &QDateEdit::dateChanged, this, &enter_data::on_dateEdit_dateChanged); // Подключение слота
+
 }
 
 enter_data::~enter_data()
@@ -60,4 +62,9 @@ void enter_data::on_comboBox_currentIndexChanged(int index)
 void enter_data::on_comboBox_2_currentIndexChanged(int index)
 {
     ui->lineEdit_3->setText(ui->comboBox_2->itemText(index));
+}
+
+void enter_data::on_dateEdit_dateChanged(const QDate &date)
+{
+    ui->lineEdit_4->setText(date.toString("yyyy-MM-dd")); // Установка текста в QLineEdit в формате "yyyy-MM-dd"
 }

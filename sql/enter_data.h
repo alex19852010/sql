@@ -28,6 +28,8 @@ private slots:
 
     void on_comboBox_2_currentIndexChanged(int index);
 
+    void on_dateEdit_dateChanged(const QDate &date);
+
 private:
     Ui::enter_data *ui;
     QComboBox *cbo2;
