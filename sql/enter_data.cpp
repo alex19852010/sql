@@ -1,5 +1,6 @@
 #include "enter_data.h"
 #include "ui_enter_data.h"
+#include <QDebug>
 
 enter_data::enter_data(QWidget *parent) :
     QWidget(parent),
@@ -26,10 +27,12 @@ enter_data::~enter_data()
 
 void enter_data::on_pushButton_clicked()
 {
-
+    QString tableName2 = ui->comboBox->currentText();
+    QString que2 = QString("INSERT INTO %1 (номер, объект, название, дата_проверки) VALUES (?, ?, ?, ?)").arg(tableName2);
+    qDebug() << que2;
 
     QSqlQuery *query = new QSqlQuery() ;
-    query->prepare("INSERT INTO ЗСК (номер, объект, название, дата_проверки) VALUES (?, ?, ?, ?)");
+    query->prepare(que2);
 
         // Связывание значений с позициями
         query->addBindValue(ui->lineEdit->text());
