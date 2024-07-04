@@ -30,6 +30,7 @@ public:
     QPushButton *pushButton;
     QComboBox *comboBox;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
 
     void setupUi(QWidget *datainfo)
     {
@@ -70,6 +71,11 @@ public:
 
         gridLayout->addWidget(pushButton_2, 2, 0, 1, 1);
 
+        pushButton_3 = new QPushButton(datainfo);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        gridLayout->addWidget(pushButton_3, 3, 0, 1, 1);
+
 
         retranslateUi(datainfo);
 
@@ -82,6 +88,7 @@ public:
         label->setText(QCoreApplication::translate("datainfo", "\320\224\320\260\320\275\320\275\321\213\320\265 \320\277\320\276 \320\276\320\261\321\212\320\265\320\272\321\202\320\260\320\274", nullptr));
         pushButton->setText(QCoreApplication::translate("datainfo", "\320\222\321\213\320\262\320\265\321\201\321\202\320\270 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
         pushButton_2->setText(QCoreApplication::translate("datainfo", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("datainfo", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
     } // retranslateUi
 
 };

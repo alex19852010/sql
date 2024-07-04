@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QtSql>
+#include <change.h>
+#include <ui_change.h>
 
 
 namespace Ui {
@@ -20,6 +22,7 @@ class enter_data : public QWidget
 public:
     explicit enter_data(QWidget *parent = nullptr);
     ~enter_data();
+
 
 private slots:
     void on_pushButton_clicked();

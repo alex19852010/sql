@@ -22,11 +22,14 @@ public:
     ~datainfo();
 
     enter_data *enter;
+    change *chan;
 
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::datainfo *ui;

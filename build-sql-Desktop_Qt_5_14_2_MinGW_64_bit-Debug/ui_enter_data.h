@@ -114,6 +114,7 @@ public:
 
         dateEdit = new QDateEdit(enter_data);
         dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+        dateEdit->setFont(font);
 
         gridLayout->addWidget(dateEdit, 7, 1, 1, 1);
 

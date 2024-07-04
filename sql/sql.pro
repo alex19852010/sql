@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    change.cpp \
     datainfo.cpp \
     enter_data.cpp \
     login.cpp \
@@ -23,12 +24,14 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    change.h \
     datainfo.h \
     enter_data.h \
     login.h \
     mainwindow.h
 
 FORMS += \
+    change.ui \
     datainfo.ui \
     enter_data.ui \
     login.ui \

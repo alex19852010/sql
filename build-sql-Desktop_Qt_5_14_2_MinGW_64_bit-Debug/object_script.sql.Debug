@@ -1,0 +1,11 @@
+debug/change.o
+debug/datainfo.o
+debug/enter_data.o
+debug/login.o
+debug/main.o
+debug/mainwindow.o
+debug/moc_change.o
+debug/moc_datainfo.o
+debug/moc_enter_data.o
+debug/moc_login.o
+debug/moc_mainwindow.o
