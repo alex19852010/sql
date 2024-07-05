@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
@@ -24,11 +25,13 @@ class Ui_change
 {
 public:
     QGridLayout *gridLayout;
+    QLineEdit *lineEdit_2;
+    QLabel *label;
     QDateEdit *dateEdit;
     QLineEdit *lineEdit;
-    QLabel *label;
     QPushButton *pushButton;
-    QLineEdit *lineEdit_2;
+    QComboBox *comboBox;
+    QLineEdit *lineEdit_3;
 
     void setupUi(QWidget *change)
     {
@@ -37,20 +40,16 @@ public:
         change->resize(362, 367);
         gridLayout = new QGridLayout(change);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        dateEdit = new QDateEdit(change);
-        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+        lineEdit_2 = new QLineEdit(change);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
         QFont font;
         font.setPointSize(12);
         font.setBold(true);
         font.setWeight(75);
-        dateEdit->setFont(font);
+        lineEdit_2->setFont(font);
+        lineEdit_2->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addWidget(dateEdit, 1, 1, 1, 1);
-
-        lineEdit = new QLineEdit(change);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-
-        gridLayout->addWidget(lineEdit, 0, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_2, 2, 0, 1, 1);
 
         label = new QLabel(change);
         label->setObjectName(QString::fromUtf8("label"));
@@ -59,16 +58,34 @@ public:
 
         gridLayout->addWidget(label, 0, 1, 1, 1);
 
+        dateEdit = new QDateEdit(change);
+        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+        dateEdit->setFont(font);
+
+        gridLayout->addWidget(dateEdit, 2, 1, 1, 1);
+
+        lineEdit = new QLineEdit(change);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setFont(font);
+        lineEdit->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(lineEdit, 0, 0, 1, 1);
+
         pushButton = new QPushButton(change);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setFont(font);
 
-        gridLayout->addWidget(pushButton, 2, 0, 1, 1);
+        gridLayout->addWidget(pushButton, 3, 0, 1, 1);
 
-        lineEdit_2 = new QLineEdit(change);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        comboBox = new QComboBox(change);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
-        gridLayout->addWidget(lineEdit_2, 1, 0, 1, 1);
+        gridLayout->addWidget(comboBox, 1, 1, 1, 1);
+
+        lineEdit_3 = new QLineEdit(change);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+
+        gridLayout->addWidget(lineEdit_3, 1, 0, 1, 1);
 
 
         retranslateUi(change);

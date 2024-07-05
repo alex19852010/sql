@@ -2,6 +2,10 @@
 #define CHANGE_H
 
 #include <QWidget>
+#include <QSqlQueryModel>
+#include <QSqlQuery>
+#include <QMessageBox>
+#include <QtSql>
 
 namespace Ui {
 class change;
@@ -14,6 +18,11 @@ class change : public QWidget
 public:
     explicit change(QWidget *parent = nullptr);
     ~change();
+
+private slots:
+    void on_dateEdit_dateChanged(const QDate &date);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::change *ui;
