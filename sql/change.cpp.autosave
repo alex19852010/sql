@@ -32,7 +32,6 @@ void change::on_pushButton_clicked()
     query->prepare(que2);
     qDebug() << ui->lineEdit_3->text();
 
-//    query->addBindValue(ui->lineEdit_3->text());
     query->addBindValue(ui->lineEdit_2->text());
     query->addBindValue(ui->lineEdit->text());
 
