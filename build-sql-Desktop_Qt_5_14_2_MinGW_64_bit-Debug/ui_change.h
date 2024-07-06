@@ -79,6 +79,7 @@ public:
 
         comboBox = new QComboBox(change);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setFont(font);
 
         gridLayout->addWidget(comboBox, 1, 1, 1, 1);
 
