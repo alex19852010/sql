@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     change.cpp \
     datainfo.cpp \
+    delet.cpp \
     enter_data.cpp \
     login.cpp \
     main.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 HEADERS += \
     change.h \
     datainfo.h \
+    delet.h \
     enter_data.h \
     login.h \
     mainwindow.h
@@ -33,6 +35,7 @@ HEADERS += \
 FORMS += \
     change.ui \
     datainfo.ui \
+    delet.ui \
     enter_data.ui \
     login.ui \
     mainwindow.ui

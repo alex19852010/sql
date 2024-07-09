@@ -64,3 +64,9 @@ void datainfo::on_pushButton_3_clicked()
  chan->show();
 
 }
+
+void datainfo::on_pushButton_4_clicked()
+{
+  del = new delet();
+  del->show();
+}

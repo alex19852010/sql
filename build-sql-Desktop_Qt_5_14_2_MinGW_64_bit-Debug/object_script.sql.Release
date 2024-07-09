@@ -1,11 +1,13 @@
 release/change.o
 release/datainfo.o
+release/delet.o
 release/enter_data.o
 release/login.o
 release/main.o
 release/mainwindow.o
 release/moc_change.o
 release/moc_datainfo.o
+release/moc_delet.o
 release/moc_enter_data.o
 release/moc_login.o
 release/moc_mainwindow.o

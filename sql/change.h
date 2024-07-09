@@ -6,6 +6,8 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QtSql>
+#include <delet.h>
+#include <ui_delet.h>
 
 namespace Ui {
 class change;
@@ -18,6 +20,8 @@ class change : public QWidget
 public:
     explicit change(QWidget *parent = nullptr);
     ~change();
+
+
 
 private slots:
     void on_dateEdit_dateChanged(const QDate &date);
