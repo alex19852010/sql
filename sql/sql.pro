@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -22,7 +22,8 @@ SOURCES += \
     enter_data.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    print.cpp
 
 HEADERS += \
     change.h \
@@ -30,7 +31,8 @@ HEADERS += \
     delet.h \
     enter_data.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    print.h
 
 FORMS += \
     change.ui \
@@ -38,7 +40,8 @@ FORMS += \
     delet.ui \
     enter_data.ui \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    print.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

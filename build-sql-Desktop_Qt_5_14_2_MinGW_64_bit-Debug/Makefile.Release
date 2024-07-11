@@ -13,13 +13,13 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_AXCONTAINER_LIB -DQT_AXBASE_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\sql -I. -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtWidgets -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtGui -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtANGLE -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtSql -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtCore -Irelease -I. -I/include -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++ 
+INCPATH       = -I..\sql -I. -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\ActiveQt -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtWidgets -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtGui -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtANGLE -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtSql -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtCore -Irelease -I. -I/include -I..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Widgets.a C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Gui.a C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Sql.a C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Core.a  -lmingw32 C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
+LIBS        =        C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5AxContainer.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5AxBase.a -lole32 -loleaut32 -luser32 -lgdi32 -ladvapi32 -luuid C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Widgets.a C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Gui.a C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Sql.a C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Core.a  -lmingw32 C:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
 QMAKE         = C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -56,12 +56,14 @@ SOURCES       = ..\sql\change.cpp \
 		..\sql\enter_data.cpp \
 		..\sql\login.cpp \
 		..\sql\main.cpp \
-		..\sql\mainwindow.cpp release\moc_change.cpp \
+		..\sql\mainwindow.cpp \
+		..\sql\print.cpp release\moc_change.cpp \
 		release\moc_datainfo.cpp \
 		release\moc_delet.cpp \
 		release\moc_enter_data.cpp \
 		release\moc_login.cpp \
-		release\moc_mainwindow.cpp
+		release\moc_mainwindow.cpp \
+		release\moc_print.cpp
 OBJECTS       = release/change.o \
 		release/datainfo.o \
 		release/delet.o \
@@ -69,25 +71,29 @@ OBJECTS       = release/change.o \
 		release/login.o \
 		release/main.o \
 		release/mainwindow.o \
+		release/print.o \
 		release/moc_change.o \
 		release/moc_datainfo.o \
 		release/moc_delet.o \
 		release/moc_enter_data.o \
 		release/moc_login.o \
-		release/moc_mainwindow.o
+		release/moc_mainwindow.o \
+		release/moc_print.o
 
 DIST          =  ..\sql\change.h \
 		..\sql\datainfo.h \
 		..\sql\delet.h \
 		..\sql\enter_data.h \
 		..\sql\login.h \
-		..\sql\mainwindow.h ..\sql\change.cpp \
+		..\sql\mainwindow.h \
+		..\sql\print.h ..\sql\change.cpp \
 		..\sql\datainfo.cpp \
 		..\sql\delet.cpp \
 		..\sql\enter_data.cpp \
 		..\sql\login.cpp \
 		..\sql\main.cpp \
-		..\sql\mainwindow.cpp
+		..\sql\mainwindow.cpp \
+		..\sql\print.cpp
 QMAKE_TARGET  = sql
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = sql.exe
@@ -98,7 +104,7 @@ DESTDIR_TARGET = release\sql.exe
 first: all
 all: Makefile.Release  release/sql.exe
 
-release/sql.exe: C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Widgets.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Gui.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Sql.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Core.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libqtmain.a ui_change.h ui_datainfo.h ui_delet.h ui_enter_data.h ui_login.h ui_mainwindow.h $(OBJECTS) 
+release/sql.exe: C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5AxContainer.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5AxBase.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Widgets.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Gui.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Sql.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Core.a C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libqtmain.a ui_change.h ui_datainfo.h ui_delet.h ui_enter_data.h ui_login.h ui_mainwindow.h ui_print.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @object_script.sql.Release  $(LIBS)
 
 qmake: FORCE
@@ -107,10 +113,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) sql.zip $(SOURCES) $(DIST) ..\sql\sql.pro ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qdevice.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\device_config.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\angle.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qconfig.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_post.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qml_debug.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\moc.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\uic.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\yacc.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\lex.prf ..\sql\sql.pro ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Widgets.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Gui.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Sql.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Core.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\qtmain.prl    ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp ..\sql\change.h ..\sql\datainfo.h ..\sql\delet.h ..\sql\enter_data.h ..\sql\login.h ..\sql\mainwindow.h  ..\sql\change.cpp ..\sql\datainfo.cpp ..\sql\delet.cpp ..\sql\enter_data.cpp ..\sql\login.cpp ..\sql\main.cpp ..\sql\mainwindow.cpp ..\sql\change.ui ..\sql\datainfo.ui ..\sql\delet.ui ..\sql\enter_data.ui ..\sql\login.ui ..\sql\mainwindow.ui    
+	$(ZIP) sql.zip $(SOURCES) $(DIST) ..\sql\sql.pro ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qdevice.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\device_config.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\angle.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qconfig.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_post.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qml_debug.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\moc.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\uic.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\dumpcpp.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\yacc.prf ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\lex.prf ..\sql\sql.pro ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5AxContainer.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5AxBase.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Widgets.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Gui.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Sql.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Core.prl ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\qtmain.prl    ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp  ..\sql\change.h ..\sql\datainfo.h ..\sql\delet.h ..\sql\enter_data.h ..\sql\login.h ..\sql\mainwindow.h ..\sql\print.h   ..\sql\change.cpp ..\sql\datainfo.cpp ..\sql\delet.cpp ..\sql\enter_data.cpp ..\sql\login.cpp ..\sql\main.cpp ..\sql\mainwindow.cpp ..\sql\print.cpp ..\sql\change.ui ..\sql\datainfo.ui ..\sql\delet.ui ..\sql\enter_data.ui ..\sql\login.ui ..\sql\mainwindow.ui ..\sql\print.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\change.o release\datainfo.o release\delet.o release\enter_data.o release\login.o release\main.o release\mainwindow.o release\moc_change.o release\moc_datainfo.o release\moc_delet.o release\moc_enter_data.o release\moc_login.o release\moc_mainwindow.o
+	-$(DEL_FILE) release\change.o release\datainfo.o release\delet.o release\enter_data.o release\login.o release\main.o release\mainwindow.o release\print.o release\moc_change.o release\moc_datainfo.o release\moc_delet.o release\moc_enter_data.o release\moc_login.o release\moc_mainwindow.o release\moc_print.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -135,9 +141,11 @@ compiler_moc_predefs_clean:
 release/moc_predefs.h: ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -Wextra -Wextra -dM -E -o release\moc_predefs.h ..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: release/moc_change.cpp release/moc_datainfo.cpp release/moc_delet.cpp release/moc_enter_data.cpp release/moc_login.cpp release/moc_mainwindow.cpp
+compiler_dumpcpp_decl_make_all:
+compiler_dumpcpp_decl_clean:
+compiler_moc_header_make_all: release/moc_change.cpp release/moc_datainfo.cpp release/moc_delet.cpp release/moc_enter_data.cpp release/moc_login.cpp release/moc_mainwindow.cpp release/moc_print.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_change.cpp release\moc_datainfo.cpp release\moc_delet.cpp release\moc_enter_data.cpp release\moc_login.cpp release\moc_mainwindow.cpp
+	-$(DEL_FILE) release\moc_change.cpp release\moc_datainfo.cpp release\moc_delet.cpp release\moc_enter_data.cpp release\moc_login.cpp release\moc_mainwindow.cpp release\moc_print.cpp
 release/moc_change.cpp: ../sql/change.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
@@ -407,9 +415,36 @@ release/moc_change.cpp: ../sql/change.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqltablemodel.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
+		ui_delet.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QComboBox \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlineedit.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtextcursor.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtextformat.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
 		release/moc_predefs.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
-	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\change.h -o release\moc_change.cpp
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\change.h -o release\moc_change.cpp
 
 release/moc_datainfo.cpp: ../sql/datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -683,15 +718,16 @@ release/moc_datainfo.cpp: ../sql/datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -708,10 +744,13 @@ release/moc_datainfo.cpp: ../sql/datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		release/moc_predefs.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
-	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\datainfo.h -o release\moc_datainfo.cpp
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\datainfo.h -o release\moc_datainfo.cpp
 
 release/moc_delet.cpp: ../sql/delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -982,9 +1021,17 @@ release/moc_delet.cpp: ../sql/delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqltablemodel.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
+		../sql/print.h \
+		ui_print.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
 		release/moc_predefs.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
-	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\delet.h -o release\moc_delet.cpp
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\delet.h -o release\moc_delet.cpp
 
 release/moc_enter_data.cpp: ../sql/enter_data.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -1257,15 +1304,16 @@ release/moc_enter_data.cpp: ../sql/enter_data.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -1282,9 +1330,12 @@ release/moc_enter_data.cpp: ../sql/enter_data.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		release/moc_predefs.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
-	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\enter_data.h -o release\moc_enter_data.cpp
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\enter_data.h -o release\moc_enter_data.cpp
 
 release/moc_login.cpp: ../sql/login.h \
 		../sql/datainfo.h \
@@ -1559,15 +1610,16 @@ release/moc_login.cpp: ../sql/login.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -1584,6 +1636,9 @@ release/moc_login.cpp: ../sql/login.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		ui_datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHeaderView \
@@ -1592,7 +1647,7 @@ release/moc_login.cpp: ../sql/login.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtableview.h \
 		release/moc_predefs.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
-	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\login.h -o release\moc_login.cpp
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\login.h -o release\moc_login.cpp
 
 release/moc_mainwindow.cpp: ../sql/mainwindow.h \
 		../sql/login.h \
@@ -1868,15 +1923,16 @@ release/moc_mainwindow.cpp: ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -1893,6 +1949,9 @@ release/moc_mainwindow.cpp: ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		ui_datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHeaderView \
@@ -1904,15 +1963,126 @@ release/moc_mainwindow.cpp: ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qmainwindow.h \
 		release/moc_predefs.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
-	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\mainwindow.h -o release\moc_mainwindow.cpp
+
+release/moc_print.cpp: ../sql/print.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtgui-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmargins.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrect.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsize.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpalette.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qcolor.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qrgb.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qrgba64.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qmatrix.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpolygon.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qregion.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qline.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtransform.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpainterpath.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qimage.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpixelformat.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpixmap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qfont.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qcursor.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qkeysequence.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qevent.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvariant.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdebug.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlocale.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qset.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
+		release/moc_predefs.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/skillbox/ms_sql/build-sql-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/skillbox/ms_sql/sql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\sql\print.h -o release\moc_print.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
+compiler_dumpcpp_impl_make_all:
+compiler_dumpcpp_impl_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_change.h ui_datainfo.h ui_delet.h ui_enter_data.h ui_login.h ui_mainwindow.h
+compiler_uic_make_all: ui_change.h ui_datainfo.h ui_delet.h ui_enter_data.h ui_login.h ui_mainwindow.h ui_print.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_change.h ui_datainfo.h ui_delet.h ui_enter_data.h ui_login.h ui_mainwindow.h
+	-$(DEL_FILE) ui_change.h ui_datainfo.h ui_delet.h ui_enter_data.h ui_login.h ui_mainwindow.h ui_print.h
 ui_change.h: ../sql/change.ui \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/uic.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\uic.exe ..\sql\change.ui -o ui_change.h
@@ -1936,6 +2106,10 @@ ui_login.h: ../sql/login.ui \
 ui_mainwindow.h: ../sql/mainwindow.ui \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/uic.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\uic.exe ..\sql\mainwindow.ui -o ui_mainwindow.h
+
+ui_print.h: ../sql/print.ui \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/uic.exe
+	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\uic.exe ..\sql\print.ui -o ui_print.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -2218,16 +2392,17 @@ release/change.o: ../sql/change.cpp ../sql/change.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqltablemodel.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QComboBox \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -2244,6 +2419,9 @@ release/change.o: ../sql/change.cpp ../sql/change.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\change.o ..\sql\change.cpp
 
@@ -2519,15 +2697,16 @@ release/datainfo.o: ../sql/datainfo.cpp ../sql/datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -2544,6 +2723,9 @@ release/datainfo.o: ../sql/datainfo.cpp ../sql/datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		ui_datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHeaderView \
@@ -2822,7 +3004,32 @@ release/delet.o: ../sql/delet.cpp ../sql/delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqltablemodel.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
-		ui_delet.h
+		../sql/print.h \
+		ui_print.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
+		ui_delet.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QComboBox \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlineedit.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtextcursor.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtextformat.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\delet.o ..\sql\delet.cpp
 
 release/enter_data.o: ../sql/enter_data.cpp ../sql/enter_data.h \
@@ -3096,15 +3303,16 @@ release/enter_data.o: ../sql/enter_data.cpp ../sql/enter_data.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -3121,6 +3329,9 @@ release/enter_data.o: ../sql/enter_data.cpp ../sql/enter_data.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\enter_data.o ..\sql\enter_data.cpp
@@ -3398,15 +3609,16 @@ release/login.o: ../sql/login.cpp ../sql/login.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -3423,6 +3635,9 @@ release/login.o: ../sql/login.cpp ../sql/login.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		ui_datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHeaderView \
@@ -3706,15 +3921,16 @@ release/main.o: ../sql/main.cpp ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -3731,6 +3947,9 @@ release/main.o: ../sql/main.cpp ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		ui_datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHeaderView \
@@ -4016,15 +4235,16 @@ release/mainwindow.o: ../sql/mainwindow.cpp ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qsqlresult.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql/qtsqlversion.h \
 		../sql/change.h \
-		ui_change.h \
+		../sql/delet.h \
+		../sql/print.h \
+		ui_print.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
-		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		ui_delet.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlayout.h \
@@ -4041,6 +4261,9 @@ release/mainwindow.o: ../sql/mainwindow.cpp ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		ui_change.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDateEdit \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
 		ui_enter_data.h \
 		ui_datainfo.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHeaderView \
@@ -4062,6 +4285,122 @@ release/mainwindow.o: ../sql/mainwindow.cpp ../sql/mainwindow.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qstatusbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\sql\mainwindow.cpp
 
+release/print.o: ../sql/print.cpp ../sql/print.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtgui-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmargins.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrect.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsize.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpalette.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qcolor.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qrgb.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qrgba64.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qmatrix.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpolygon.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qregion.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qline.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtransform.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpainterpath.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qimage.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpixelformat.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qpixmap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qfont.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qcursor.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qkeysequence.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qevent.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvariant.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdebug.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlocale.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qset.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
+		ui_print.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QVariant \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qeventloop.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\print.o ..\sql\print.cpp
+
 release/moc_change.o: release/moc_change.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_change.o release\moc_change.cpp
 
@@ -4079,6 +4418,9 @@ release/moc_login.o: release/moc_login.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mainwindow.o release\moc_mainwindow.cpp
+
+release/moc_print.o: release/moc_print.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_print.o release\moc_print.cpp
 
 ####### Install
 

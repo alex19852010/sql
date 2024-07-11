@@ -265,6 +265,7 @@ Makefile: ../sql/sql.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g+
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/moc.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/opengl.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/uic.prf \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/dumpcpp.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qmake_use.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/file_copies.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/windows.prf \
@@ -273,6 +274,8 @@ Makefile: ../sql/sql.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g+
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf \
 		../sql/sql.pro \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxContainer.prl \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxBase.prl \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl \
@@ -475,6 +478,7 @@ Makefile: ../sql/sql.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g+
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/moc.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/opengl.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/uic.prf:
+../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/dumpcpp.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qmake_use.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/file_copies.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/windows.prf:
@@ -483,6 +487,8 @@ Makefile: ../sql/sql.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g+
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf:
 ../sql/sql.pro:
+../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxContainer.prl:
+../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxBase.prl:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl:

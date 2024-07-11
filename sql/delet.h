@@ -6,6 +6,8 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QtSql>
+#include <print.h>
+#include <ui_print.h>
 
 namespace Ui {
 class delet;

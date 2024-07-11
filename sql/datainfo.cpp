@@ -70,3 +70,9 @@ void datainfo::on_pushButton_4_clicked()
   del = new delet();
   del->show();
 }
+
+void datainfo::on_pushButton_5_clicked()
+{
+printer = new print();
+printer->show();
+}
